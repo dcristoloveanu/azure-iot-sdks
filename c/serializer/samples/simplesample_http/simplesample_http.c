@@ -26,14 +26,14 @@ and removing calls to _DoWork will yield the same results. */
 
 /*String containing Hostname, Device Id & Device Key in the format:             */
 /*  "HostName=<host_name>;DeviceId=<device_id>;SharedAccessKey=<device_key>"    */
-static const char* connectionString = "[device connection string]";
+static const char* connectionString = "HostName=iot-sdks-test.azure-devices.net;DeviceId=dcristo_test;SharedAccessKey=nMPurztSIcmdp0b1f9bv2gOoLau7wX3Y5uZGXNDALEs=";
 
 // Define the Model
 BEGIN_NAMESPACE(WeatherStation);
 
 DECLARE_MODEL(ContosoAnemometer,
 WITH_DATA(ascii_char_ptr, DeviceId),
-WITH_DATA(double, WindSpeed),
+WITH_DATA(int, WindSpeed),
 WITH_ACTION(TurnFanOn),
 WITH_ACTION(TurnFanOff),
 WITH_ACTION(SetAirResistance, int, Position)
@@ -143,7 +143,7 @@ void simplesample_http_run(void)
     else
     {
         IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle = IoTHubClient_LL_CreateFromConnectionString(connectionString, HTTP_Protocol);
-        double avgWindSpeed = 10.0;
+        int avgWindSpeed = 10;
 
         srand((unsigned int)time(NULL));
 
